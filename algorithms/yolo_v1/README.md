@@ -48,6 +48,7 @@ In short, training only on Pascal VOC gave me about mAP\@0.5 = 0.2 (calculated w
 - first epoch always takes a bit longer to train
 - all paths in train/test/detect scripts need to be updated to match your dataset directories. 
 - this repository does not include the full datasets required to train the model, however I included tiny samples for both Pascal VOC and ImageNet to test things out more smoothly
+- the in evaluation tables, I note the times and performances for multiple runs as I used a shared remote server that allowed running code only in certain blocks of time (e.g. 24h, 48h etc.)
 
 ### YOLO_v1 training (Object Detection task using different datasets)
 
