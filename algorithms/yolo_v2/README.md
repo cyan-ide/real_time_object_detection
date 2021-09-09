@@ -78,7 +78,7 @@ To start off, I used my past YOLOv1 code and modyfied it to fit whatever changed
 
 ## Results
 
-In short, when using pre-trained Darknet19 on ImageNet and later training on VOC2007+2012 I managed to obtain 0.72 testing on VOC2007 (calculated with Padilla et al. scripts). 
+In short, when using pre-trained Darknet19 on ImageNet and later training on VOC2007+2012 I managed to obtain mAP 0.72 testing on VOC2007 (calculated with Padilla et al. scripts). 
 
 Same model but testing with a fixed 0.4 confidence threshold this corresponds to mAP 0.91 on train set and 0.56 on test. For Darknet19 pre-training, I got 91.6% top-5 accuracy and 74.0% top-1 accuracy on ImageNet test set after 150 epochs of training on ImageNet train set.
 
