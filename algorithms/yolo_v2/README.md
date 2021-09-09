@@ -78,22 +78,23 @@ To start off, I used my past YOLOv1 code and modyfied it to fit whatever changed
 
 ## Results
 
-In short, when using pre-trained Darknet19 on ImageNet and later training on VOC2007+2012 I managed to obtain 0.69 testing on VOC2007 (calculated with Padilla et al. scripts). 
+In short, when using pre-trained Darknet19 on ImageNet and later training on VOC2007+2012 I managed to obtain 0.72 testing on VOC2007 (calculated with Padilla et al. scripts). 
 
-Same model but testing with a fixed 0.4 confidence threshold this corresponds to mAP 0.81 on train set and 0.58 on test. For Darknet19 pre-training, I got 91.6% top-5 accuracy and 74.0% top-1 accuracy on ImageNet test set after 150 epochs of training on ImageNet train set.
+Same model but testing with a fixed 0.4 confidence threshold this corresponds to mAP 0.91 on train set and 0.56 on test. For Darknet19 pre-training, I got 91.6% top-5 accuracy and 74.0% top-1 accuracy on ImageNet test set after 150 epochs of training on ImageNet train set.
 
 
 ![alt text][image2]
-*Fig. 2 YOLOv2 training charts (red = constant LR (2e-10). orange = scheduled LR).*
+*Fig. 2 YOLOv2 training charts: red = constant LR (2e-5), 180 epochs and loss weights set (2); blue = constant LR (2e-5) and loss weights set (1); green = scheduled LR).*
 
 ## Notes for running the code (similar as YOLOv1)
 - configuration parameters for each script (train/test/detect etc.) are global variables at the top of the source code (paths to datasets, pre-trained models; hyperparameters etc.)
 - first epoch always takes a bit longer to train
 - all paths in train/test/detect scripts need to be updated to match your dataset directories. 
 - this repository does not include the full datasets required to train the model, however I included tiny samples for both Pascal VOC and ImageNet to test things out more smoothly (look in the YOLO_v1 directory)
-- in the evaluation tables, I note the times and performances for multiple runs as I used a shared remote server that allowed running code only in certain blocks of time (e.g. 24h, 48h etc.)
+- in the evaluation table, I note the times and performances for multiple runs as I used a shared remote server that allowed running code only in certain blocks of time (e.g. 24h, 48h etc.)
 - in comparison to the YOLOv2 paper, my final version doesn't include Darknet training with the high resolution images, nor the YOLOv2 training with multi-scale (ie. switching scale every 10 epochs); I tested those solutions but didn't give me particularly improved results
 - LR setting can make quite a difference. The setting from the paper for scheduled LR decreasing by e-10 didn't work that good for me, after playing around with some other LR set I managed to improve it. However, in the end constant LR worked best.
+- weights for loss components do make a difference as well. My initial weights had greatly elevated object loss and then box loss (set 1), when I made all weights closer to each other just slightly favouring object loss mAP went up by 3% (set 2) ! 
 
 ### Darknet19 backbone training results (classification)
 
